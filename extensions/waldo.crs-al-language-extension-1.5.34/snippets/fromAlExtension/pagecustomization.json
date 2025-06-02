@@ -1,0 +1,15 @@
+{
+    "Snippet: Page Customization": {
+        "prefix": "tpagecustwaldo",
+        "body": [
+            "pagecustomization ${1:MyCustomization} customizes ${2:MyTargetPage}",
+            "{",
+            "\tlayout",
+            "\t{",
+            "\t\t${0}",
+            "\t}",
+            "}"
+        ],
+        "description": "Snippet (waldo): Page Customization"
+    }
+}

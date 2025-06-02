@@ -1,0 +1,1 @@
+{"version":3,"file":"CRSExtensionPublicApi.js","sourceRoot":"","sources":["../../src/api/CRSExtensionPublicApi.ts"],"names":[],"mappings":";;;AACA,iDAA8C;AAC9C,qDAAkD;AAElD,MAAa,qBAAqB;IAI9B;QACI,IAAI,CAAC,YAAY,GAAG,IAAI,2BAAY,EAAE,CAAC;QACvC,IAAI,CAAC,cAAc,GAAG,IAAI,+BAAc,EAAE,CAAC;IAC/C,CAAC;CAEJ;AATD,sDASC"}

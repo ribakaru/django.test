@@ -1,0 +1,22 @@
+@charset "utf=8";
+
+section {
+    border-radius: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+h1 {
+    background-color: skyblue;
+    text-align: center;
+    font-size: 24px;
+}
+footer {
+    text-align: center;
+    background-color: pink;
+}
+

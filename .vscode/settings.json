@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "プログラミング勉強ファイル"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}

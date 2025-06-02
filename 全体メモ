@@ -1,0 +1,3 @@
+django GETとPOSTの違い
+GETはリソースの取得をする
+POSTはリソースの新規生成をする

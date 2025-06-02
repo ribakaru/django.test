@@ -1,0 +1,512 @@
+{
+	"name": "crs-al-language-extension",
+	"displayName": "waldo's CRS AL Language Extension",
+	"description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
+	"version": "1.5.34",
+	"publisher": "waldo",
+	"icon": "images/waldo.png",
+	"author": {
+		"name": "waldo",
+		"url": "http://www.waldo.be",
+		"email": "crs-al-language-extension@waldo.be"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/waldo1001/crs-al-language-extension.git"
+	},
+	"preview": false,
+	"keywords": [
+		"multi-root ready",
+		"Dynamics NAV",
+		"Dynamics 365 Business Central",
+		"AL",
+		"ERP"
+	],
+	"bugs": {
+		"url": "https://github.com/waldo1001/crs-al-language-extension/issues"
+	},
+	"license": "MIT",
+	"galleryBanner": {
+		"color": "#0060A0",
+		"theme": "dark"
+	},
+	"engines": {
+		"vscode": "^1.28.0"
+	},
+	"categories": [
+		"Other",
+		"Extension Packs",
+		"Snippets"
+	],
+	"activationEvents": [
+		"onLanguage:al",
+		"workspaceContains:app.json",
+		"onCommand:al.go",
+		"onCommand:crs.CreateGraphVizDependencyGraph",
+		"onCommand:crs.SearchMicrosoftDocs",
+		"onCommand:crs.SearchGoogle",
+		"onCommand:crs.SearchObjectNames",
+		"onCommand:crs.ConfigureBestPracticeNaming"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "crs.InstallWaldosModules",
+				"title": "CRS: Install Waldo's Modules"
+			},
+			{
+				"command": "crs.CreateGraphVizDependencyGraph",
+				"title": "CRS: Create GraphViz Dependency Graph"
+			},
+			{
+				"command": "crs.RunCurrentObjectWeb",
+				"title": "CRS: Run Current Object (Web Client)"
+			},
+			{
+				"command": "crs.PublishAndRunCurrentObjectWeb",
+				"title": "CRS: Publish and Run Current Object"
+			},
+			{
+				"command": "crs.RunObjectWeb",
+				"title": "CRS: Run Object (Web Client)"
+			},
+			{
+				"command": "crs.RunTestTool",
+				"title": "CRS: Run AL Test Tool in Web Client"
+			},
+			{
+				"command": "crs.RunEventSubscribers",
+				"title": "CRS: Run Event Subscribers Page in Web Client"
+			},
+			{
+				"command": "crs.RunDatabaseLocks",
+				"title": "CRS: Run Database Locks Page in Web Client"
+			},
+			{
+				"command": "crs.RunObjectTablet",
+				"title": "CRS: Run Object (Tablet Client)"
+			},
+			{
+				"command": "crs.RunObjectPhone",
+				"title": "CRS: Run Object (Phone Client)"
+			},
+			{
+				"command": "crs.RunObjectWindows",
+				"title": "CRS: Run Object (Windows Client)"
+			},
+			{
+				"command": "crs.RenameCurrentFile",
+				"title": "CRS: Rename - Current File"
+			},
+			{
+				"command": "crs.RenameAllFiles",
+				"title": "CRS: Rename - All Files"
+			},
+			{
+				"command": "crs.ReorganizeCurrentFile",
+				"title": "CRS: Reorganize - Current File"
+			},
+			{
+				"command": "crs.ReorganizeAllFiles",
+				"title": "CRS: Reorganize - All Files"
+			},
+			{
+				"command": "crs.SearchMicrosoftDocs",
+				"title": "CRS: Search Microsoft Docs"
+			},
+			{
+				"command": "crs.SearchGoogle",
+				"title": "CRS: Search Google"
+			},
+			{
+				"command": "crs.SearchObjectNames",
+				"title": "CRS: Search Object Names"
+			},
+			{
+				"command": "crs.ConfigureBestPracticeNaming",
+				"title": "CRS: Configure Best-practice File Naming"
+			},
+			{
+				"command": "crs.CompileDGML",
+				"title": "CRS: Compile DGML"
+			}
+		],
+		"configuration": {
+			"title": "CRS AL Language Extension Configuration",
+			"properties": {
+				"CRS.nstfolder": {
+					"type": "string",
+					"default": "C:\\Program Files\\Microsoft Dynamics NAV\\*\\Service",
+					"description": "Folder of the NST",
+					"scope": "resource"
+				},
+				"CRS.WebServerInstancePort": {
+					"type": "string",
+					"default": "",
+					"description": "Port number for the web client",
+					"scope": "resource"
+				},
+				"CRS.WinServer": {
+					"type": "string",
+					"default": "localhost",
+					"description": "Server where the windows client is connecting to",
+					"scope": "resource"
+				},
+				"CRS.WinServerInstance": {
+					"type": "string",
+					"default": "NAV",
+					"description": "Serverinstance where the windows client is connecting to",
+					"scope": "resource"
+				},
+				"CRS.WinServerInstancePort": {
+					"type": "number",
+					"default": 7046,
+					"description ": "Portnumber of the serverinstance where the windows client is connecting to",
+					"scope": "resource"
+				},
+				"CRS.PublicWebBaseUrl": {
+					"type": "string",
+					"default": "",
+					"description": "Public Web Url that overrules the setting in launch.json (empty setting will just take the settings in launch.json)",
+					"scope": "resource"
+				},
+				"CRS.ExtensionObjectNamePattern": {
+					"Type": "string",
+					"default": "",
+					"description": "The pattern of the objectname for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectTypeShortUpper>,<ObjectId>,<BaseName>,<BaseNameShort>,<BaseId>.  Remark: the system will accept manually added  characters following this pattern.",
+					"scope": "resource"
+				},
+				"CRS.FileNamePattern": {
+					"Type": "string",
+					"default": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
+					"description": "The pattern of the filename for non-extension objects..  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>",
+					"scope": "resource"
+				},
+				"CRS.FileNamePatternExtensions": {
+					"Type": "string",
+					"default": "<ObjectTypeShort><BaseId>-Ext<ObjectId>.<ObjectNameShort>.al",
+					"description": "The pattern of the filename for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseNameShort>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+					"scope": "resource"
+				},
+				"CRS.FileNamePatternPageCustomizations": {
+					"Type": "string",
+					"default": "<ObjectTypeShort><BaseId>-PageCust.<ObjectNameShort>.al",
+					"description": "The pattern of the filename for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseNameShort>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+					"scope": "resource"
+				},
+				"CRS.AlSubFolderName": {
+					"enum": [
+						"src",
+						"Source",
+						"Objects",
+						"Al",
+						"None"
+					],
+					"type": "string",
+					"default": "src",
+					"description": "Sets the subfoldername of where the objects will be placed.  'None' prevents the 'Reorganize' to do anything (if you want to apply your own folder structure).",
+					"scope": "resource"
+				},
+				"CRS.OnSaveAlFileAction": {
+					"enum": [
+						"DoNothing",
+						"Rename",
+						"Reorganize"
+					],
+					"type": "string",
+					"default": "DoNothing",
+					"description": "Automatically will Rename/Reorganize the file you are editing.  Takes into account the prefix/suffix as well.",
+					"scope": "resource"
+				},
+				"CRS.ObjectNamePrefix": {
+					"type": "string",
+					"default": null,
+					"description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
+					"scope": "resource"
+				},
+				"CRS.ObjectNameSuffix": {
+					"type": "string",
+					"default": null,
+					"description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
+					"scope": "resource"
+				},
+				"CRS.RemovePrefixFromFilename": {
+					"type": "boolean",
+					"default": false,
+					"description": "When using the Reorganize/Rename-commands, this setting will remove any prefix from the filename (but keep it in object name).  Tip: use as a workspace-setting",
+					"scope": "resource"
+				},
+				"CRS.RemoveSuffixFromFilename": {
+					"type": "boolean",
+					"default": false,
+					"description": "When using the Reorganize/Rename-commands, this setting will remove any suffix from the filename (but keep it in object name).  Tip: use as a workspace-setting",
+					"scope": "resource"
+				},
+				"CRS.RemoveUnderscoreFromFilename": {
+					"type": "boolean",
+					"default": true,
+					"description": "When using the Reorganize/Rename-commands, this setting will remove any underscore from the filename (but keep it in object name).  Tip: use as a workspace-setting",
+					"scope": "resource"
+				},
+				"CRS.DisableDefaultAlSnippets": {
+					"type": "boolean",
+					"default": false,
+					"description": "Disable the default Al Snippets.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore",
+					"scope": "resource"
+				},
+				"CRS.DisableCRSSnippets": {
+					"type": "boolean",
+					"default": false,
+					"description": "Disable the Al Snippets that come with this extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore",
+					"scope": "resource"
+				},
+				"CRS.RenameWithGit": {
+					"type": "boolean",
+					"default": false,
+					"description": "Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  The feature is still in preview-mode, therefore the default value is 'false'",
+					"scope": "resource"
+				},
+				"CRS.ReorganizeByNamespace": {
+					"type": "boolean",
+					"default": false,
+					"description": "This is a feature that allows for the automatic reorganization of files by creating folder structures based on the namespaces defined within the files.  The feature is still in preview-mode, therefore the default value is 'false'",
+					"scope": "resource"
+				},
+				"CRS.NamespacePrefixToIgnore": {
+					"type": "string",
+					"default": "",
+					"description": "This configuration allows you to exclude a part of Namespace during the files reorganization process based on the namespaces defined within the files.  The feature is still in preview-mode",
+					"scope": "resource"
+				},
+				"CRS.SearchObjectNamesRegexPattern": {
+					"type": "string",
+					"default": "^\\w+ (\\d* )?\"*",
+					"description": "The regex pattern that will be used to search through files for object names.",
+					"scope": "resource"
+				},
+				"CRS.DependencyGraph.IncludeTestApps": {
+					"type": "boolean",
+					"default": false,
+					"description": "Whether to include all dependencies to test apps in the Dependency Graph.",
+					"scope": "resource"
+				},
+				"CRS.DependencyGraph.ExcludeAppNames": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "List of apps you don't want in the dependency graph.",
+					"scope": "resource"
+				},
+				"CRS.DependencyGraph.ExcludePublishers": {
+					"type": "array",
+					"default": [
+						"Microsoft"
+					],
+					"items": {
+						"type": "string"
+					},
+					"description": "List of publishers you don't want in the dependency graph.",
+					"scope": "resource"
+				},
+				"CRS.DependencyGraph.RemovePrefix": {
+					"type": "string",
+					"description": "Remove this prefix from the appname in the graph.  Remark: this has no influence on the 'Exluce AppNames' setting.",
+					"scope": "resource"
+				},
+				"CRS.SkipWarningMessageOnRenameAll": {
+					"type": "boolean",
+					"default": false,
+					"description": "Whether to skip the warning message when renaming all files from all opened workspaces.",
+					"scope": "resource"
+				}
+			}
+		},
+		"snippets": [
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/al.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/codeunit.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/controladdin.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/dotnet.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/entitlement.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/enum.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/enumextension.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/interface.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/page.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/pagecustomization.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/pageextension.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/permissionset.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/permissionsetextension.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/profile.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/query.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/report.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/reportextension.json"
+			},
+			{
+				"language": "json",
+				"path": "./snippets/fromAlExtension/ruleset.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/table.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/tableextension.json"
+			},
+			{
+				"language": "xml",
+				"path": "./snippets/fromAlExtension/xml.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/fromAlExtension/xmlport.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/al.json"
+			},
+			{
+				"language": "json",
+				"path": "./snippets/appjson.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/DesignPatterns.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/install.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/page.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/table.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/Test.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/upgrade.json"
+			},
+			{
+				"language": "al",
+				"path": "./snippets/Onboarding.json"
+			},
+			{
+				"language": "json",
+				"path": "./snippets/bcptSuite.json"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "resourceLangId == al",
+					"command": "crs.RunCurrentObjectWeb",
+					"group": "CRS"
+				}
+			]
+		},
+		"keybindings": {
+			"command": "crs.RunCurrentObjectWeb",
+			"key": "CTRL+SHIFT+r"
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"dependencies": {
+		"applicationinsights": "^2.2.0",
+		"ncp": "^2.0.0",
+		"open": "^6.0.0",
+		"powershell": "^2.3.2",
+		"simple-git": "^3.16.0"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.0.0",
+		"@types/node": "^18.19.68",
+		"@types/vscode": "^1.28.0",
+		"@typescript-eslint/eslint-plugin": "^5.9.1",
+		"@typescript-eslint/parser": "^5.9.1",
+		"@vscode/test-electron": "^2.3.8",
+		"eslint": "^8.6.0",
+		"glob": "^7.2.0",
+		"mocha": "^11.0.2",
+		"typescript": "^4.5.4"
+	},
+	"__metadata": {
+		"id": "1557c794-f9e4-4680-b028-bd2755477f76",
+		"publisherId": "b9a3066f-c349-4f6d-a568-617d9cac6bcf",
+		"publisherDisplayName": "waldo",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"isPreReleaseVersion": false,
+		"hasPreReleaseVersion": false,
+		"installedTimestamp": 1736067813769,
+		"pinned": false,
+		"preRelease": false,
+		"source": "gallery",
+		"size": 20745236
+	}
+}

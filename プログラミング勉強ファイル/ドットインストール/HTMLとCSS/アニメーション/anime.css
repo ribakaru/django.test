@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+.box {
+    width:80px;
+    height: 80px;
+    background-color: pink;
+    transition-property: transform;
+    transition-duration: 1s;
+}
+
+/* セレクター編で確認する */
+.box:hover { 
+    /* transform: translate(40px, -40px); */
+    /* transform: rotate(40deg); */
+    transform: scale(2, .5);
+}
+
+

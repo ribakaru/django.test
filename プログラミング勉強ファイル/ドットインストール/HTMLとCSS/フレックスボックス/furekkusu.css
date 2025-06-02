@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+.container {
+    border: 8px solid blue;
+    display: flex;
+    /* flex-direction: row-reverse; */
+    flex-direction: column-reverse;
+}
+
+.item-1 {
+    width: 80px;
+    height: 80px;
+    background-color: pink;
+}
+
+.item-2 {
+    width: 80px;
+    height: 80px;
+    background-color: skyblue;
+}
+
+.item-3 {
+    width: 80px;
+    height: 80px;
+    background-color: orange;
+}
+

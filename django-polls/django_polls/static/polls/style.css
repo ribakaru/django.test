@@ -1,0 +1,9 @@
+li a {
+    color: green;
+}
+
+body {
+    background-image: url("images/testbackground.webp");
+    background-size: 30%;
+    background-repeat: no-repeat;
+}
